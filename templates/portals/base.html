@@ -12,62 +12,9 @@
     <title>{% block title  %} {% endblock%}</title>
 </head>
 <body>
-{#<nav class="navbar navbar-expand-sm bg-warning navbar-dark sticky-top" style="margin-bottom: 5vh">#}
-{##}
-{#<!-- Links -->#}
-{#  <ul class="navbar-nav">#}
-{#        <!-- Navbar text-->#}
-{#  <span class="navbar-text">#}
-{#    <span style="color: Red">Company Portal</span>#}
-{#  </span>#}
-{##}
-{#    <li class="nav-item">#}
-{#      <a class="nav-link" href="create/" data-toggle="modal" data-target="#myModal"><span style="color: Red">Ask</span></a>#}
-{#    </li>#}
-{#  </ul>#}
-{#</nav>#}
+{% show_bar %}
 {% block body %}
 {% endblock body %}
 
-{#<!-- The Modal -->#}
-{#<div class="modal" id="myModal">#}
-{#  <div class="modal-dialog">#}
-{#    <div class="modal-content">#}
-{##}
-{#      <!-- Modal Header -->#}
-{#      <div class="modal-header">#}
-{#        <h4 class="modal-title">Lets Get Started</h4>#}
-{#        <button type="button" class="close" data-dismiss="modal">&times;</button>#}
-{#      </div>#}
-{##}
-{#      <!-- Modal body -->#}
-{#      <div class="modal-body">#}
-{#        <form method="post" action="{% url 'create' %}">#}
-{#            {% csrf_token %}#}
-{#            <div class="form-group">#}
-{#  <label for="usr">Name:</label>#}
-{#                {{ ItemForm.name }}#}
-{#</div>#}
-{#<div class="form-group">#}
-{#  <label for="pwd">Password:</label>#}
-{#    {{ ItemForm.description }}#}
-{#</div>#}
-{#            <div class="form-group">#}
-{#  <label for="pwd">Category:</label>#}
-{#    {{ ItemForm.category }}#}
-{#</div>#}
-{#            {{ form.as_p }}#}
-{#            <button type="submit">Done</button>#}
-{#        </form>#}
-{#      </div>#}
-{##}
-{#      <!-- Modal footer -->#}
-{#      <div class="modal-footer">#}
-{#        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>#}
-{#      </div>#}
-{##}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
 </body>
 </html>

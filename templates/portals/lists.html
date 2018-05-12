@@ -1,0 +1,9 @@
+{% extends 'portals/base.html'%}
+{% block title %}
+View
+{% endblock %}
+{% block body %}
+{% for item in items %}
+<p>{{ item.name }}</p>
+{% endfor %}
+{% endblock %}

@@ -3,5 +3,6 @@ from portals import views
 
 urlpatterns = [
     re_path(r'^$', views.home, name='home_page'),
-    re_path('create/', views.CreateItem.as_view(), name='create')
+    re_path('create/', views.CreateItem.as_view(), name='create'),
+    path('view/<str:category>', views.DisplayItem.as_view(), name='display'),
 ]

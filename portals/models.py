@@ -10,6 +10,9 @@ class Discussions(models.Model):
     created_date = models.DateTimeField(null=False, blank=False, default=datetime.datetime.now())
     category = models.CharField(choices=CHOICES, max_length=50)
 
+    class Meta:
+        ordering = ['-created_date']
+
     def __str__(self):
         return self.name
 
