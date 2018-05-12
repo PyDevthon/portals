@@ -1,0 +1,43 @@
+{% extends 'portals/base.html' %}
+{% load tags %}
+{% load static %}
+{% block title %}
+Welcome
+{% endblock %}
+{% block body %}
+    {% show_bar %}
+<div class="card-deck mx-auto" style="width: 90vw;">
+<div class="card bg-secondary" style="width:200px">
+  <img class="card-img-top" src="{% static 'portals/BA.png' %}" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="view/DEV" class="btn btn-primary">See Profile</a>
+  </div>
+</div>
+  <div class="card bg-danger" style="width:200px">
+  <img class="card-img-top" src="{% static 'portals/dev1jpg.jpg' %}" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="view/BA" class="btn btn-primary">See Profile</a>
+  </div>
+</div>
+  <div class="card bg-success" style="width:200px">
+  <img class="card-img-top" src="{% static 'portals/QA.png' %}" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="view/QA" class="btn btn-primary">See Profile</a>
+  </div>
+</div>
+  <div class="card bg-warning" style="width:200px">
+  <img class="card-img-top" src="{% static 'portals/test.jpg' %}" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="view/others" class="btn btn-primary">See Profile</a>
+  </div>
+</div>
+</div>
+{% endblock %}
