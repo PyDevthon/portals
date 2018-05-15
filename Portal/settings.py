@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'portals',
     'bootstrap3',
     'bootstrap4',
+    'bootstrap_pagination',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,6 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
+
+ALLOWED_HOSTS = ['192.168.0.6', '127.0.0.1']
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

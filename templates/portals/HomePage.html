@@ -5,38 +5,73 @@
 Welcome
 {% endblock %}
 {% block body %}
-<div class="card-deck mx-auto" style="width: 90vw;">
-<div class="card bg-secondary" style="width:200px">
+        <header class="bg-primary text-white text-center">
+      <div class="container">
+        <img class="img-fluid mb-1 d-block mx-auto" src="{% static 'startbootstrap-freelancer-gh-pages/img/profile.png' %}" style='width:256px;height:256px' alt="">
+        <h1 class="text-uppercase mb-0">Welcome To Company Portal</h1>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0">Developers - Business Analyst -Quality Analyst </h2>
+      </div>
+    </header>
+    <div class="bg-primary">
+<div class="card-deck mx-auto" style="width: 90vw;padding: 5vh">
+<div class="card border border-secondary bg-warning" style="width:200px">
   <img class="card-img-top" src="{% static 'portals/BA.png' %}" alt="Card image">
   <div class="card-body">
-    <h4 class="card-title">John Doe</h4>
-    <p class="card-text">Some example text.</p>
-    <a href="view/DEV" class="btn btn-primary">See Profile</a>
-  </div>
-</div>
-  <div class="card bg-danger" style="width:200px">
-  <img class="card-img-top" src="{% static 'portals/dev1jpg.jpg' %}" alt="Card image">
-  <div class="card-body">
-    <h4 class="card-title">John Doe</h4>
-    <p class="card-text">Some example text.</p>
+    <h4 class="card-title">Business Analyst</h4>
+    <p class="card-text">Great companies are built on great products.</p>
     <a href="view/BA" class="btn btn-primary">See Profile</a>
   </div>
 </div>
-  <div class="card bg-success" style="width:200px">
+  <div class="card border border-secondary bg-warning" style="width:200px">
+  <img class="card-img-top" src="{% static 'portals/dev1jpg.jpg' %}" alt="Card image">
+  <div class="card-body">
+      <h4 class="card-title">Developers</h4>
+    <p class="card-text">Talks is cheap, show me the code.
+    Linus Torvaldsw
+    </p>
+    <a href="view/DEV" class="btn btn-primary">See Profile</a>
+  </div>
+</div>
+  <div class="card border border-secondary bg-warning" style="width:200px">
   <img class="card-img-top" src="{% static 'portals/QA.png' %}" alt="Card image">
   <div class="card-body">
-    <h4 class="card-title">John Doe</h4>
-    <p class="card-text">Some example text.</p>
+    <h4 class="card-title">Quality Analyst</h4>
+    <p class="card-text">A Code that cannot be tested is flawed.</p>
     <a href="view/QA" class="btn btn-primary">See Profile</a>
   </div>
 </div>
-  <div class="card bg-warning" style="width:200px">
+  <div class="card border border-secondary bg-warning" style="width:200px">
   <img class="card-img-top" src="{% static 'portals/test.jpg' %}" alt="Card image">
   <div class="card-body">
-    <h4 class="card-title">John Doe</h4>
-    <p class="card-text">Some example text.</p>
+    <h4 class="card-title">General Talk</h4>
+    <p class="card-text">Beam me up scotty!
+    Good old Star Trek</p>
     <a href="view/others" class="btn btn-primary">See Profile</a>
   </div>
 </div>
 </div>
+    </div>
+     <!-- About Section -->
+    <section class="bg-primary text-white mb-0" id="about">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-white">About</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+          <div class="col-lg-4 ml-auto">
+            <p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+          </div>
+          <div class="col-lg-4 mr-auto">
+            <p class="lead">Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a class="btn btn-xl btn-outline-light" href="#">
+            <i class="fa fa-download mr-2"></i>
+            Download Now!
+          </a>
+        </div>
+      </div>
+    </section>
+
 {% endblock %}

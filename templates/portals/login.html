@@ -1,0 +1,31 @@
+{% extends 'portals/base.html'%}
+
+{% block title %}
+Login
+{% endblock %}
+{% block body %}
+    <div class="m-5">
+  <div class="container justify-content-center w-25  p-5 border border-secondary">
+        <form method="post" action="">
+            {% csrf_token %}
+        <div class="form-group">
+        <label for="name">Name:</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+        <label for="Description">Password:</label>
+            {{ form.password }}
+        </div>
+        {% if form.errors %}
+                           <div class=" d-flex">
+            <ul class="list-unstyled mx-auto">
+                <li class="justify-content-center"><span style="color: red" >Invalid Username/Password</span></li>
+            </ul>
+                </div>
+             {% endif %}
+            <button type="submit" class="btn btn-primary">Done</button>
+
+        </form>
+      </div>
+    </div>
+{% endblock %}

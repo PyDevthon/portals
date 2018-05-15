@@ -1,18 +1,46 @@
 
-<nav class="navbar navbar-expand-sm bg-warning navbar-dark sticky-top" style="margin-bottom: 5vh">
-
-<!-- Links -->
-  <ul class="navbar-nav">
-        <!-- Navbar text-->
-  <span class="navbar-text">
-    <span style="color: Red">Company Portal</span>
-  </span>
-
-    <li class="nav-item">
-      <a class="nav-link" href="" data-toggle="modal" data-target="#myModal"><span style="color: Red">Ask</span></a>
-    </li>
-  </ul>
-</nav>
+{#<nav class="navbar navbar-expand-sm bg-warning navbar-dark sticky-top" style="margin-bottom: 5vh">#}
+{##}
+{#<!-- Links -->#}
+{#  <ul class="navbar-nav">#}
+{#        <!-- Navbar text-->#}
+{#  <span class="navbar-text">#}
+{#    <span style="color: Red">Company Portal</span>#}
+{#  </span>#}
+{##}
+{#    <li class="nav-item">#}
+{#      <a class="nav-link" href="" data-toggle="modal" data-target="#myModal"><span style="color: Red">Ask</span></a>#}
+{#    </li>#}
+{#  </ul>#}
+{#</nav>#}
+<nav class="navbar navbar-expand-sm bg-secondary sticky-top text-uppercase" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{% url 'home_page' %}">Start Discussions</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="" data-toggle="modal" data-target="#myModal">Ask</a>
+            </li>
+                 {% if  not request.user.is_authenticated %}
+               <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'login' %}?next={{ request.path }}" >Login</a>
+            </li>
+              {% else %}
+                 <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'logout' %}" >Logout</a>
+            </li>
+              {% endif %}
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'chat' %}">Chat</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 <!-- The Modal -->
 <div class="modal" id="myModal">
   <div class="modal-dialog">
@@ -30,16 +58,16 @@
             {% csrf_token %}
         <div class="form-group">
         <label for="name">Name:</label>
-            {{ form.name }}
+            {{ form_ask.name }}
         </div>
         <div class="form-group">
         <label for="Description">Description:</label>
-            {{ form.description }}
+            {{ form_ask.description }}
         </div>
         <div class="form-group">
   <label for="sel1">Select list:</label>
   <select class="form-control" name="category" id="sel1">
-        {% for choice in form.category.field.choices %}
+        {% for choice in form_ask.category.field.choices %}
         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
     {% endfor %}
   </select>
@@ -55,6 +83,9 @@
       </div>
 
   </div>
+  </div>
 </div>
-</div>
+
+
+
 

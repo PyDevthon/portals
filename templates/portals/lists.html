@@ -1,9 +1,31 @@
 {% extends 'portals/base.html'%}
+{% load tags %}
+{% load bootstrap_pagination %}
 {% block title %}
+{% load static %}
+
+
 View
 {% endblock %}
 {% block body %}
-{% for item in items %}
-<p>{{ item.name }}</p>
-{% endfor %}
+    <div style="padding: 2vh">
+     <form class="form-inline justify-content-center" action="" method="get">
+    <input name="query" class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button class="btn btn-danger" type="submit">Search</button>
+  </form>
+    </div>
+    {% for item in items %}
+        <ul onclick="location.href='{% url 'discuss' item.id%}';" style="cursor:pointer;" class="w-75 mx-auto list-unstyled bg-warning">
+    <li class="media border p-3">
+  <img src="{% static 'portals/Uiconstock-Round-Papercut-Social-Reddit.ico' %}" alt="John Doe" class="align-self-start mr-3 rounded-circle" style="width:60px;">
+  <div class="media-body">
+    <h5 class="font-weight-light">{{ item.name }}<small><i>  Posted :{{ item.created_date|date }}</i></small></h5>
+    <p style="word-wrap: break-word">{{ item.description }}</p>
+  </div>
+
+</li>
+{#        <div class="justify-content-ce"> <a class="btn btn-primary" href="{% url 'discuss' item.id%}">Take me</a></div>#}
+        </ul>
+    {% endfor %}
+     {% bootstrap_paginate page_obj range=10 %}
 {% endblock %}
