@@ -1,7 +1,6 @@
 from django import forms
 from portals.models import Discussions, Replies
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+
 
 CHOICES = (('QA', 'QA'), ('BA', 'BA'), ('DEV', 'DEV'), ('Others', 'Others'))
 
@@ -21,7 +20,7 @@ class ReplyForm(forms.ModelForm):
 
     class Meta:
         model = Replies
-        fields = ('content',)
+        fields = ('content','replied_by')
         widgets = {'content':forms.Textarea(attrs={'class':'form-control', 'rows':5})}
 
 

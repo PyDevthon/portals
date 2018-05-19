@@ -28,13 +28,9 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'startbootstrap-freelancer-gh-pages/css/freelancer.min.css' %}" rel="stylesheet">
     <title>{% block title  %} {% endblock%}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <!--Pusher Script-->
-    {% block puser %}
-    {% endblock %}
 </head>
-{% block pusherstyle %}
-{% endblock %}
 <body>
 {% show_bar %}
 {% block body %}
@@ -46,8 +42,8 @@
         <div class="row">
           <div class="col-md-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Location</h4>
-            <p class="lead mb-0">2215 John Daniel Drive
-              <br>Clark, MO 65243</p>
+            <p class="lead mb-0">Bengalore
+              <br>Karnataka</p>
           </div>
           <div class="col-md-4 mb-5 mb-lg-0">
             <h4 class="text-uppercase mb-4">Around the Web</h4>
@@ -80,9 +76,10 @@
             </ul>
           </div>
           <div class="col-md-4">
-            <h4 class="text-uppercase mb-4">About Freelancer</h4>
-            <p class="lead mb-0">Freelance is a free to use, open source Bootstrap theme created by
-              <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+            <h4 class="text-uppercase mb-4">About Company Portal</h4>
+            <p class="lead mb-0">Company Portal is free to use web app built on Django.
+                <br>
+              <a href="https://www.djangoproject.com/">Start Django</a></p>
           </div>
         </div>
       </div>
@@ -90,7 +87,7 @@
 
     <div class="copyright py-4 text-center text-white">
       <div class="container">
-        <small>Copyright &copy; Your Website 2018</small>
+        <small>Copyright &copy; Compaby Portal 2018</small>
       </div>
     </div>
 
@@ -100,7 +97,6 @@
         <i class="fa fa-chevron-up"></i>
       </a>
     </div>
-
 
     <!-- Plugin JavaScript -->
     <script src="{% static 'startbootstrap-freelancer-gh-pages/vendor/jquery-easing/jquery.easing.min.js' %}"></script>

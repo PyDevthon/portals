@@ -1,20 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect, HttpResponse
-from django.views.generic import CreateView, ListView, DetailView, FormView, View
-from portals.forms import CreateForm, ReplyForm, UserForm
-from django.urls import resolve, reverse_lazy
-from portals.models import Discussions, Replies
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import render, HttpResponseRedirect
+from django.views.generic import CreateView, ListView, FormView, View
+from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from pusher import Pusher
-from django.views.decorators.csrf import csrf_exempt
-
-app_id = "526161"
-key = "d265b7301a055c552106"
-secret = "8759168a5e5e47dfa43a"
-cluster = "ap2"
-
-pusher = Pusher(app_id=app_id, key=key, secret=secret)
+from portals.models import Discussions, Replies
+from portals.forms import CreateForm, ReplyForm, UserForm
 
 
 def home(request):
@@ -98,4 +88,22 @@ class LogOut(View):
     def get(self, request):
         logout(request)
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+class Vote(View):
+
+    def post(self, request, item_id):
+        item = Replies.objects.get(pk = item_id)
+        item.votes = item.votes + 1
+        item.voted_by.add(request.user.id)
+        item.save()
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+
+
+
+
+
+
 

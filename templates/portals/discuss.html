@@ -1,7 +1,7 @@
 {% extends 'portals/base.html' %}
 {% load bootstrap_pagination %}
 {% load static %}
-
+{% load tags %}
 {% block title %}
 Talk
 {% endblock %}
@@ -10,18 +10,37 @@ Talk
 <div class="media  p-3 justify-content-center bg-info mb-2">
   <img src="{% static 'portals/index.png' %}" alt="John Doe" class="align-self-start mr-3 rounded-circle" style="width:60px;">
   <div class="media-body">
-    <h5>{{ root.name }}<small><i> Posted : {{ root.created_date|date }}</i></small></h5>
+    <h6 style="color: greenyellow">{{ root.name }}</h6>
     <p style="word-wrap: break-word">{{ root.description }}</p>
   </div>
+<p><small>{{ root.created_date|date }}</small></p>
 </div>
 {% for item in items %}
-    <ul class="list-unstyled mx-auto w-75 bg-warning">
+    <ul class="list-unstyled mx-auto w-75  bg-warning">
 <li class="media border p-3">
   <img src="{% static 'portals/Uiconstock-Round-Papercut-Social-Reddit.ico' %}" alt="John Doe" class="align-self-start mr-3 rounded-circle" style="width:60px;">
   <div class="media-body">
-  <h5 class="font-weight-light"><small><i>  Posted : {{ item.created_date|date }}</i></small></h5>
-    <p style="word-wrap: break-word">{{ item.content}}</p>
+      <h6 style="">{{ item.replied_by }}</h6>
+      <p style="word-wrap: break-word;" >{{ item.content}}</p>
+             <div class="d-flex float-right">
+                   {% if request.user.is_authenticated %}
+                       <div class="d-flex ml-2">
+          {% check request.user.id item as p%}
+          {% if p %}
+      <form action="{% url 'vote' item.id %}" method="post">
+          {% csrf_token %}
+{#          {% check request. %}#}
+          <button type="submit" class="btn" style="background-color: transparent"><i class="material-icons" style="color: white;">thumb_up</i> </button>
+      </form>
+              {% else %}
+              <i class="material-icons" style="color: red;">thumb_up</i>
+              {% endif %}
+      {% endif %}
+          <p style="padding-left: 5px;font-family: Arial">{{ item.votes }} <small style="padding-left: 5px">{{ item.created_date|date }}</small></p>
+          </div>
+      </div>
   </div>
+
 </li>
     </ul>
  {% endfor %}
@@ -30,6 +49,7 @@ Talk
     <form action="{% url 'addreply' root.id %}" method="post">
     {% csrf_token %}
 {{ form.content }}
+        <input type="text" value="{{ request.user.id }}" name="replied_by" hidden>
     <button type="submit" class="btn btn-primary mt-2">Reply</button>
     </form>
     </div>

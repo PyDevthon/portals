@@ -9,4 +9,5 @@ urlpatterns = [
     path('addreply/<int:key>', views.AddReply.as_view(), name='addreply'),
     path('login', views.LoginUser.as_view(), name='login'),
     path('logout', views.LogOut.as_view(), name='logout'),
+    path('vote/<int:item_id>', views.Vote.as_view(), name='vote'),
 ]
