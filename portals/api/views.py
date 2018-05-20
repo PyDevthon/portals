@@ -7,11 +7,15 @@ class DiscussionsListView(generics.ListCreateAPIView):
     serializer_class = DiscussionsSerializer
 
     def get_queryset(self):
+        query = self.request.GET.get('query')
+        qst = Discussions.objects.all()
+        if query is not None:
+            qst = qst.filter(description__icontains=query)
         try:
             cat = self.kwargs['category']
-            return Discussions.objects.filter(category=cat)
+            return qst.filter(category=cat)
         except KeyError:
-            return Discussions.objects.all()
+            return qst
 
 
 class DiscussionsItemsView(generics.RetrieveUpdateDestroyAPIView):
