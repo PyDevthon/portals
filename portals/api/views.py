@@ -25,6 +25,9 @@ class RepliesListView(generics.ListCreateAPIView):
     lookup_field = 'pk'
     queryset = Replies.objects.all()
 
+    def perform_create(self, serializer):
+        serializer.save(replied_by_id=self.request.user.id)
+
 
 class RepliesToView(generics.ListCreateAPIView):
     serializer_class = RepliesSerializer
