@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'portals',
     'bootstrap3',
     'bootstrap4',
+    'rest_framework',
     'bootstrap_pagination',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -78,6 +79,15 @@ WSGI_APPLICATION = 'Portal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -88,6 +98,7 @@ DATABASES = {
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
 
 
 # Password validation
