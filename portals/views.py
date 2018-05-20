@@ -42,7 +42,7 @@ class DiscussItem(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['root'] = Discussions.objects.get(pk = self.kwargs.get('key'))
-        context['form'] = ReplyForm(self.request.GET)
+        context['form'] = ReplyForm()
         return context
 
 
