@@ -29,7 +29,7 @@ class RepliesListView(generics.ListCreateAPIView):
         serializer.save(replied_by_id=self.request.user.id)
 
 
-class RepliesToView(generics.ListCreateAPIView):
+class RepliesToView(generics.ListAPIView):
     serializer_class = RepliesSerializer
     lookup_field = 'pk'
 
