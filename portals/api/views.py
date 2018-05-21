@@ -18,6 +18,8 @@ class DiscussionsListView(generics.ListCreateAPIView):
             return qst
 
 
+
+
 class DiscussionsItemsView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = DiscussionsSerializer
     lookup_field = 'pk'
@@ -35,7 +37,7 @@ class RepliesListView(generics.ListCreateAPIView):
 
 class RepliesToView(generics.ListAPIView):
     serializer_class = RepliesSerializer
-    lookup_field = 'pk'
+
 
     def get_queryset(self):
         return Replies.objects.filter(replied_to = self.kwargs['replied_to_id'])

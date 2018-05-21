@@ -1,5 +1,6 @@
 from django import forms
 from portals.models import Discussions, Replies
+from django.contrib.auth.forms import AuthenticationForm
 
 
 CHOICES = (('QA', 'QA'), ('BA', 'BA'), ('DEV', 'DEV'), ('Others', 'Others'))
@@ -24,7 +25,7 @@ class ReplyForm(forms.ModelForm):
         widgets = {'content':forms.Textarea(attrs={'class':'form-control', 'rows':5})}
 
 
-class UserForm(forms.Form):
+class UserForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 

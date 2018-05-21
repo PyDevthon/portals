@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import CreateView, ListView, FormView, View
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from portals.models import Discussions, Replies
 from portals.forms import CreateForm, ReplyForm, UserForm
@@ -27,7 +28,8 @@ class DisplayItem(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('query', '')
-        return super().get_queryset().filter(category=self.kwargs.get('category'), description__icontains=query)
+        return super().get_queryset().filter(category=self.kwargs.get('category'),
+                                             description__icontains=query)
 
 
 class DiscussItem(ListView):
@@ -60,27 +62,38 @@ class AddReply(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class LoginUser(FormView):
-    form_class = UserForm
+# class LoginUser(FormView):
+#     form_class = UserForm
+#     template_name = 'portals/login.html'
+#
+#     def get_success_url(self):
+#         url = self.request.GET.get('next', '/')
+#         if 'addreply' in url:
+#             url = url.replace('addreply', 'discuss')
+#         return url
+#
+#     def form_valid(self, form):
+#         user = authenticate(self.request, username=self.request.POST['username'],
+#                             password=self.request.POST['password'])
+#         if user is not None:
+#             login(self.request, user)
+#             return super().form_valid(form)
+#         else:
+#             return self.form_invalid(form)
+#
+#     def form_invalid(self, form):
+#         form.add_error(None, "Invalid Username/Password")
+#         return super().form_invalid
+
+class LoginUser(LoginView):
     template_name = 'portals/login.html'
+    form_class = UserForm
 
     def get_success_url(self):
         url = self.request.GET.get('next', '/')
         if 'addreply' in url:
             url = url.replace('addreply', 'discuss')
         return url
-
-    def form_valid(self, form):
-        user = authenticate(self.request, username=self.request.POST['username'], password=self.request.POST['password'])
-        if user is not None:
-            login(self.request, user)
-            return super().form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_invalid(self, form):
-        form.add_error(None, "Invalid Username/Password")
-        return super().form_invalid(form)
 
 
 class LogOut(View):
