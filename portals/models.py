@@ -10,6 +10,8 @@ class Discussions(models.Model):
     description = models.TextField(blank=False, null=False)
     created_date = models.DateTimeField(null=False, blank=False, default=datetime.datetime.now())
     category = models.CharField(choices=CHOICES, max_length=50)
+    date = models.DateField(blank=False, null=False, default=datetime.date.today())
+
 
     class Meta:
         ordering = ['-id']
@@ -30,7 +32,6 @@ class Replies(models.Model):
     votes = models.IntegerField(default=0)
     voted_by = models.ManyToManyField(User)
     replied_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='replies_by')
-
 
     def get_voted_by(self):
         return [x.id for x in self.voted_by.all()]

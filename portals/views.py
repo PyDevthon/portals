@@ -1,3 +1,5 @@
+import datetime
+from datetime import timedelta
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import CreateView, ListView, FormView, View
 from django.urls import reverse_lazy
@@ -28,8 +30,23 @@ class DisplayItem(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('query', '')
-        return super().get_queryset().filter(category=self.kwargs.get('category'),
-                                             description__icontains=query)
+        filters = self.request.GET.get('filter', '')
+        search_qs = super().get_queryset().filter(category=self.kwargs.get('category'), description__icontains=query)
+        if filters == 'Today':
+            return search_qs.filter(date=datetime.date.today())
+        elif filters == "LastWeek":
+            today = datetime.date.today()
+            monday_this_week = today - timedelta(days=today.weekday())
+            monday_last_week = today - timedelta(days=today.weekday(), weeks=1)
+            return search_qs.filter(date__gte=monday_last_week, date__lte=monday_this_week - timedelta(days=1))
+        elif filters == "LastMonth":
+            today = datetime.date.today()
+            last_months_start = today.replace(day=1, month=today.month - 1)
+            first_day_current_month = today.replace(day=1)
+            last_day_last_month = first_day_current_month - timedelta(days=1)
+            return search_qs.filter(date__gte=last_months_start, date__lte=last_day_last_month)
+        return search_qs
+
 
 
 class DiscussItem(ListView):
@@ -111,12 +128,4 @@ class Vote(View):
         item.voted_by.add(request.user.id)
         item.save()
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-
-
-
-
-
-
-
 

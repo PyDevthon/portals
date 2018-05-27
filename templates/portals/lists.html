@@ -11,7 +11,13 @@ View
     <div style="padding: 2vh">
      <form class="form-inline justify-content-center" action="" method="get">
     <input name="query" class="form-control mr-sm-2" type="text" placeholder="Search">
-    <button class="btn btn-danger" type="submit">Search</button>
+<select class="form-control" name="filter" id="sel1">
+        <option value="">Filter</option>
+        <option value="Today">Today</option>
+        <option value="LastWeek">LastWeek</option>
+        <option value="LastMonth">LastMonth</option>
+  </select>
+    <button class="btn btn-danger" type="submit">Submit</button>
   </form>
     </div>
     {% for item in items %}
@@ -22,7 +28,7 @@ View
     <h5 class="font-weight-light" style="font-family: 'Arial'">{{ item.name }}</h5>
     <p style="word-wrap: break-word">{{ item.description }}</p>
   </div>
-<p><small style="margin-left: 5vw">{{ item.created_date|date }}</small></p>
+<p><small style="margin-left: 5vw">{{ item.date|date }}</small></p>
 </li>
 {#        <div class="justify-content-ce"> <a class="btn btn-primary" href="{% url 'discuss' item.id%}">Take me</a></div>#}
         </ul>
